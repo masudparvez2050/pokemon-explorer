@@ -1,14 +1,18 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+
+import EmptyFavorites from "../components/EmptyFavorites";
+import { usePokemon } from "../context/PokemonContext";
 import { Card, CardContent, CardFooter } from "../components/ui/card";
+import { Link } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { Heart } from "lucide-react";
-import { usePokemon } from "../context/PokemonContext";
 
 export default function Favorites() {
   const { favorites, removeFavorite } = usePokemon();
   const [pokemonData, setPokemonData] = useState({});
   const [loading, setLoading] = useState(true);
+
+  console.log("Favorites:", favorites);
 
   useEffect(() => {
     const fetchPokemonData = async () => {
@@ -39,18 +43,7 @@ export default function Favorites() {
   }
 
   if (favorites.length === 0) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-[85vh] op w-full space-y-4 bg-white/40 dark:bg-background/60 backdrop-blur rounded-md">
-        <Heart className="h-16 w-16 text-muted-foreground" />
-        <h2 className="text-2xl font-semibold">No Favorites Yet</h2>
-        <p className="text-muted-foreground">
-          Start adding some Pokémon to your favorites!
-        </p>
-        <Link to="/">
-          <Button>Browse Pokémon</Button>
-        </Link>
-      </div>
-    );
+    return <EmptyFavorites />;
   }
 
   return (

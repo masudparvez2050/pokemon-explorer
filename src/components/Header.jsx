@@ -19,7 +19,7 @@ export default function Header() {
               alt="Pokémon Explorer"
               className="h-8 w-8 text-primary"
             />
-            <span className="hidden dark:text-gray-300 font-bold text-xl md:inline-block">
+            <span className=" dark:text-gray-300 font-bold text-md md:text-xl">
               Pokémon Explorer
             </span>
           </Link>
