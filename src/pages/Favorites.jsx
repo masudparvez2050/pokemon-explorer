@@ -53,7 +53,7 @@ export default function Favorites() {
         if (!pokemon) return null;
 
         return (
-          <Card key={name} className="overflow-hidden group pokemon-card">
+          <Card key={name} className="overflow-hidden group pokemon-card animate-fade-right">
             <CardContent className="p-6">
               <div className="aspect-square relative">
                 <img
@@ -62,7 +62,7 @@ export default function Favorites() {
                   className="w-full h-full object-contain transition-transform group-hover:scale-110"
                 />
               </div>
-              <h2 className="text-xl font-semibold capitalize text-center mt-4">
+              <h2 className="text-xl font-semibold capitalize text-center mt-4 pokemon-font text-yellow-500 text-outline ">
                 {name}
               </h2>
             </CardContent>

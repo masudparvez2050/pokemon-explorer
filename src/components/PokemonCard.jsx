@@ -17,17 +17,20 @@ export default function PokemonCard({ pokemon }) {
   return (
     <div className="card-container">
       <div className="card-flipper">
-        <div className="front">
-          <Card className="overflow-hidden group pokemon-card card-hover relative">
+        <div className="front ">
+          <Card className="overflow-hidden group pokemon-card card-hover relative animate-fade-up animate-once animate-ease-in">
             <CardContent className="p-0 flex items-center justify-center">
               <img
                 src="/pokemon_card.jpg"
                 alt={pokemon.name}
-                className="w-full h-full object-contain"
+                className="w-full h-full object-contain "
                 loading="lazy"
               />
             </CardContent>
           </Card>
+          <p className="absolute bottom-0 left-0 right-0 text-center text-xl capitalize text-yellow-500 text-outline bg-background/40 backdrop-blur rounded-b-md p-2 animate-fade-up animate-once animate-ease-in pokemon-font  shadow-md ">
+            {pokemon.name}
+          </p>
         </div>
         <div className="back md:mt-[-600px] lg:mt-[-400px] mt-[-140%]">
           <Card className="overflow-hidden group pokemon-card card-hover relative">
@@ -55,11 +58,11 @@ export default function PokemonCard({ pokemon }) {
                 <img
                   src={getImageUrl(pokemon.url)}
                   alt={pokemon.name}
-                  className="w-full h-full object-contain transition-transform group-hover:scale-110 "
+                  className="w-full h-full object-contain bounce-animation "
                   loading="lazy"
                 />
               </div>
-              <h2 className="text-xl font-semibold capitalize text-center mt-4">
+              <h2 className="text-xl font-semibold capitalize text-center mb-4 pokemon-font text-yellow-500 text-outline">
                 {pokemon.name}
               </h2>
               {pokemon.details && (

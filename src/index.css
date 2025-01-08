@@ -55,6 +55,20 @@
   --ring: 224 76% 48%;
 }
 
+@font-face {
+  font-family: "pokemon-font";
+  src: url("../src/assets/fonts/Pokemon Solid.ttf") format("truetype");
+}
+
+.pokemon-font {
+  font-family: "pokemon-font", sans-serif;
+}
+
+.text-outline {
+  text-shadow: -1px -1px 0 #385ea9, 1px -1px 0 #385ea9, -1px 1px 0 #385ea9,
+    1px 1px 0 #385ea9;
+}
+
 .pokemon-bg {
   background-image: url("https://images.unsplash.com/photo-1613771404784-3a5686aa2be3?q=80&w=2069");
   background-size: cover;
@@ -177,6 +191,7 @@
 .card-flipper .back {
   transform: rotateY(180deg);
 }
+
 .card-flipper .front {
   transform: rotateY(0deg);
 }
@@ -194,4 +209,26 @@
   );
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
+}
+
+@keyframes softBounce {
+  0% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-10px);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+  70% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.bounce-animation {
+  animation: softBounce 3s ease-in infinite;
 }

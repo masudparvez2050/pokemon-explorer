@@ -75,5 +75,5 @@ export default {
       },
     },
   },
-  plugins: [import("tailwindcss-animated")],
+  plugins: [require("tailwindcss-animated")],
 };
