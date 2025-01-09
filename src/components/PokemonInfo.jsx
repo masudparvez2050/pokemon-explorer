@@ -30,7 +30,7 @@ export default function PokemonInfo({ pokemon }) {
     <div className="space-y-6">
       <Card className="pokemon-card animate-fade-left">
         <CardHeader>
-          <CardTitle className="text-4xl mt-[-15px] mb-5 capitalize e text-outline pokemon-font text-yellow-500  ">
+          <CardTitle className="text-4xl mt-[-15px] mb-5 capitalize pokemon-font text-yellow-500 text-outline">
             {pokemon.name}
           </CardTitle>
           <div className="flex gap-2 mt-2">

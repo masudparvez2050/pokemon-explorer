@@ -67,6 +67,8 @@
 .text-outline {
   text-shadow: -1px -1px 0 #385ea9, 1px -1px 0 #385ea9, -1px 1px 0 #385ea9,
     1px 1px 0 #385ea9;
+
+  color: #eab308;
 }
 
 .pokemon-bg {

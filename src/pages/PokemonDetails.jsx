@@ -62,16 +62,16 @@ export default function PokemonDetails() {
           </Button>
         </Link>
         <Button
-          variant="default"
-          size="icon"
+          className="dark:bg-background/80 bg-white text-muted-foreground"
           onClick={() =>
             isFavorite(pokemon.name)
               ? removeFavorite(pokemon.name)
               : addFavorite(pokemon.name)
           }
-          className="favorite-button"
         >
           <Heart
+            variant=""
+            size="icon"
             className={cn(
               "h-5 w-5 transition-colors ",
               isFavorite(pokemon.name)
