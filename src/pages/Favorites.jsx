@@ -12,8 +12,6 @@ export default function Favorites() {
   const [pokemonData, setPokemonData] = useState({});
   const [loading, setLoading] = useState(true);
 
-  console.log("Favorites:", favorites);
-
   useEffect(() => {
     const fetchPokemonData = async () => {
       const data = {};
@@ -47,38 +45,63 @@ export default function Favorites() {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mx-6">
       {favorites.map((name) => {
         const pokemon = pokemonData[name];
         if (!pokemon) return null;
 
         return (
-          <Card key={name} className="overflow-hidden group pokemon-card animate-fade-right">
-            <CardContent className="p-6">
-              <div className="aspect-square relative">
-                <img
-                  src={pokemon.sprites.other["official-artwork"].front_default}
-                  alt={name}
-                  className="w-full h-full object-contain transition-transform group-hover:scale-110"
-                />
+          <div key={name} className="card-container">
+            {" "}
+            <div className="card-flipper">
+              <div className="front ">
+                <Card className="overflow-hidden group pokemon-card card-hover ">
+                  <CardContent className="p-0 flex items-center justify-center">
+                    <img
+                      src="/pokemon_card.png"
+                      alt={name}
+                      className="w-full h-full object-contain "
+                      loading="lazy"
+                    />
+                  </CardContent>
+                </Card>
+                <p className=" absolute bottom-0 left-0 right-0 text-center text-xl capitalize text-yellow-500 text-outline bg-background/40 backdrop-blur rounded-b-md p-2 animate-fade-up animate-once animate-ease-in pokemon-font  shadow-md ">
+                  {pokemon?.name}
+                </p>
               </div>
-              <h2 className="text-xl font-semibold capitalize text-center mt-4 pokemon-font text-yellow-500 text-outline ">
-                {name}
-              </h2>
-            </CardContent>
-            <CardFooter className="flex justify-between p-6 pt-0">
-              <Link to={`/pokemon/${name}`}>
-                <Button>View Details</Button>
-              </Link>
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => removeFavorite(name)}
-              >
-                <Heart className="h-5 w-5 fill-red-500 stroke-red-500" />
-              </Button>
-            </CardFooter>
-          </Card>
+              <div className="back ">
+                <Card className="overflow-hidden group pokemon-card animate-fade-right">
+                  <CardContent className="p-6">
+                    <div className="aspect-square relative">
+                      <img
+                        src={
+                          pokemon.sprites.other["official-artwork"]
+                            .front_default
+                        }
+                        alt={name}
+                        className="w-full h-full object-contain transition-transform  bounce-animation"
+                      />
+                    </div>
+                    <h2 className="text-xl font-semibold capitalize text-center mt-4 pokemon-font text-yellow-500 text-outline ">
+                      {name}
+                    </h2>
+                  </CardContent>
+                  <CardFooter className="flex justify-between p-6 pt-0">
+                    <Link to={`/pokemon/${name}`}>
+                      <Button>View Details</Button>
+                    </Link>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => removeFavorite(name)}
+                    >
+                      <Heart className="h-5 w-5 fill-red-500 stroke-red-500" />
+                    </Button>
+                  </CardFooter>
+                </Card>{" "}
+              </div>
+            </div>
+          </div>
         );
       })}
     </div>

@@ -18,20 +18,25 @@ export default function Pagination({
         >
           Previous
         </Button>
-        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-          <Button
-            key={page}
-            variant={currentPage === page ? "default" : "outline"}
-            onClick={() => setCurrentPage(page)}
-            className={cn(
-              "hidden sm:inline-flex",
-              currentPage !== page &&
-                "bg-background/80 border-primary/20 text-muted-foreground"
-            )}
-          >
-            {page}
-          </Button>
-        ))}
+        {Array.from({ length: totalPages }, (_, i) => i + 1)
+          .slice(
+            Math.max(0, currentPage - 3),
+            Math.min(totalPages, currentPage + 2)
+          )
+          .map((page) => (
+            <Button
+              key={page}
+              variant={currentPage === page ? "default" : "outline"}
+              onClick={() => setCurrentPage(page)}
+              className={cn(
+                "hidden sm:inline-flex",
+                currentPage !== page &&
+                  "bg-background/80 border-primary/20 text-muted-foreground"
+              )}
+            >
+              {page}
+            </Button>
+          ))}
         <Button
           variant="outline"
           onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}

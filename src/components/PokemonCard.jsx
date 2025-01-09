@@ -15,39 +15,48 @@ export default function PokemonCard({ pokemon }) {
   const { isFavorite, addFavorite, removeFavorite } = usePokemon();
 
   return (
-    <div className="card-container">
+    <div
+      className="card-container"
+      style={{
+        animationDelay: `${(pokemon?.details?.id + 1) * 100}ms`,
+        opacity: 0,
+        animation: `fade-right 600ms ease-out ${
+          pokemon?.details?.id + 1 * 200
+        }ms forwards`,
+      }}
+    >
       <div className="card-flipper">
         <div className="front ">
-          <Card className="overflow-hidden group pokemon-card card-hover relative animate-fade-up animate-once animate-ease-in">
+          <Card className="overflow-hidden group pokemon-card card-hover ">
             <CardContent className="p-0 flex items-center justify-center">
               <img
-                src="/pokemon_card.jpg"
-                alt={pokemon.name}
+                src="/pokemon_card.png"
+                alt={pokemon?.name}
                 className="w-full h-full object-contain "
                 loading="lazy"
               />
             </CardContent>
           </Card>
-          <p className="absolute bottom-0 left-0 right-0 text-center text-xl capitalize text-yellow-500 text-outline bg-background/40 backdrop-blur rounded-b-md p-2 animate-fade-up animate-once animate-ease-in pokemon-font  shadow-md ">
-            {pokemon.name}
+          <p className=" absolute bottom-0 left-0 right-0 text-center text-xl capitalize text-yellow-500 text-outline bg-background/40 backdrop-blur rounded-b-md p-2 animate-fade-up animate-once animate-ease-in pokemon-font  shadow-md ">
+            {pokemon?.name}
           </p>
         </div>
-        <div className="back md:mt-[-600px] lg:mt-[-400px] mt-[-140%]">
-          <Card className="overflow-hidden group pokemon-card card-hover relative">
+        <div className="back ">
+          <Card className="overflow-hidden group pokemon-card card-hover">
             <Button
               variant="ghost"
               size="icon"
               onClick={() =>
-                isFavorite(pokemon.name)
-                  ? removeFavorite(pokemon.name)
-                  : addFavorite(pokemon.name)
+                isFavorite(pokemon?.name)
+                  ? removeFavorite(pokemon?.name)
+                  : addFavorite(pokemon?.name)
               }
               className="favorite-button"
             >
               <Heart
                 className={cn(
                   "h-5 w-5 transition-colors",
-                  isFavorite(pokemon.name)
+                  isFavorite(pokemon?.name)
                     ? "fill-red-500 stroke-red-500"
                     : "stroke-current hover:fill-red-500/20"
                 )}
@@ -56,29 +65,30 @@ export default function PokemonCard({ pokemon }) {
             <CardContent className="p-6">
               <div className="aspect-square relative">
                 <img
-                  src={getImageUrl(pokemon.url)}
-                  alt={pokemon.name}
+                  src={getImageUrl(pokemon?.url)}
+                  alt={pokemon?.name}
                   className="w-full h-full object-contain bounce-animation "
                   loading="lazy"
                 />
               </div>
               <h2 className="text-xl font-semibold capitalize text-center mb-4 pokemon-font text-yellow-500 text-outline">
-                {pokemon.name}
+                {pokemon?.name}
               </h2>
-              {pokemon.details && (
+              {pokemon?.details && (
                 <div className="mt-2 text-sm text-muted-foreground">
                   <div className="flex justify-between">
                     <span className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2  capitalize">
                       HP:{" "}
                       {
-                        pokemon.details.stats.find((s) => s.stat.name === "hp")
-                          ?.base_stat
+                        pokemon?.details?.stats?.find(
+                          (s) => s.stat.name === "hp"
+                        )?.base_stat
                       }
                     </span>
                     <span className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2  capitalize">
                       ATK:{" "}
                       {
-                        pokemon.details.stats.find(
+                        pokemon?.details?.stats?.find(
                           (s) => s.stat.name === "attack"
                         )?.base_stat
                       }
@@ -88,7 +98,7 @@ export default function PokemonCard({ pokemon }) {
               )}
             </CardContent>
             <CardFooter className="p-6 pt-0">
-              <Link to={`/pokemon/${pokemon.name}`} className="w-full">
+              <Link to={`/pokemon/${pokemon?.name}`} className="w-full">
                 <Button className="w-full">View Details</Button>
               </Link>
             </CardFooter>
@@ -104,6 +114,7 @@ PokemonCard.propTypes = {
     name: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
     details: PropTypes.shape({
+      id: PropTypes.number.isRequired,
       stats: PropTypes.arrayOf(
         PropTypes.shape({
           stat: PropTypes.shape({
