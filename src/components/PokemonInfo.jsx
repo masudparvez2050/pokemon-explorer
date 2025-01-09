@@ -25,6 +25,15 @@ const typeColors = {
   fairy: "bg-pink-400",
 };
 
+const statColors = {
+  hp: "bg-red-500",
+  attack: "bg-orange-500",
+  defense: "bg-yellow-500",
+  "special-attack": "bg-indigo-500",
+  "special-defense": "bg-green-500",
+  speed: "bg-purple-500",
+};
+
 export default function PokemonInfo({ pokemon }) {
   return (
     <div className="space-y-6">
@@ -52,7 +61,7 @@ export default function PokemonInfo({ pokemon }) {
         </CardHeader>
         <CardContent>
           <div className="flex flex-wrap gap-2">
-            {pokemon.abilities.map(({ ability }) => (
+            {pokemon.abilities?.map(({ ability }) => (
               <Badge
                 key={ability.name}
                 variant="outline"
@@ -70,7 +79,7 @@ export default function PokemonInfo({ pokemon }) {
           <CardTitle>Base Stats</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          {pokemon.stats.map(({ base_stat, stat }) => (
+          {pokemon?.stats.map(({ base_stat, stat }) => (
             <div key={stat.name} className="space-y-2">
               <div className="flex justify-between">
                 <span className="text-sm font-medium capitalize">
@@ -80,7 +89,12 @@ export default function PokemonInfo({ pokemon }) {
                   {base_stat}
                 </span>
               </div>
-              <Progress value={base_stat} max={255} className="h-2" />
+              <Progress
+                value={base_stat}
+                max={255}
+                indicator={statColors[stat.name]}
+                className={cn("h-2")}
+              />
             </div>
           ))}
         </CardContent>
